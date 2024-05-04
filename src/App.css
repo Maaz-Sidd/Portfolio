@@ -1,0 +1,8 @@
+.customTabs {
+    /* Add your custom styles for the tabs here */
+  }
+
+.custom-tabs .tabs > button,
+        .custom-tabs .tabs > button > span {
+          color: white;
+        }
