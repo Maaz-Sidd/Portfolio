@@ -1,4 +1,4 @@
-import { HoverEffect, Languages } from "./ui/card-hover-effect";
+import { HoverEffect} from "./ui/card-hover-effect";
 import {
   Dropdown,
   DropdownTrigger,

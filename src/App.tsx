@@ -7,7 +7,9 @@ import { RootState } from './Redux/store.ts';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Home from './pages/home.tsx'
 import Loader from './components/loading.tsx';
-import Admin from './pages/Admin/login.tsx';
+import Admin from './pages/Admin/index.tsx';
+import Login from './pages/Admin/Login.tsx';
+
 
 
 
@@ -40,12 +42,14 @@ function App() {
   }
 
   
+  console.log(portfolioData);
   return (  
     <BrowserRouter>
       {loading ? <Loader/> : 
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/admin' element={<Admin/>}/>
+        <Route path='/admin-login' element={<Login/>}/>
       </Routes>
       }
     </BrowserRouter>

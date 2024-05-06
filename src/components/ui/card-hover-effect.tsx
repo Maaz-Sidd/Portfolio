@@ -1,9 +1,13 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { Button } from "@nextui-org/react";
 
 export const HoverEffect = ({
   items,
   className,
+  admin,
+  handleDelete,
+  handleEdit
 }: {
   items: {
     title: string;
@@ -11,15 +15,20 @@ export const HoverEffect = ({
     languages: string[];
     frameworks: string[];
     link: string[];
+    
   }[];
   className?: string;
+  admin?: boolean;
+  handleDelete: (index: number) => void;
+  handleEdit: (index: number) => void;
 }) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
 
   return (
     <div
       className={
-        "grid grid-cols-1 md:grid-cols-2  py-6"
+        `grid grid-cols-1 md:grid-cols-2  py-6 ${className}`
       }
     >
       {items.map((item, idx) => (
@@ -53,9 +62,16 @@ export const HoverEffect = ({
             <Languages items={item.languages}/>
             
             <FrameWorks items={item.frameworks}/>
+            {admin  && (
+            <div className="flex flex-column mt-2 items-center align-end justify-end bottom-0 w-full"> 
+                <Button className="mr-3" color="danger" onClick={()=>{handleDelete(idx)}}>Delete</Button>
+                <Button onClick={()=>{handleEdit(idx)}}>Edit</Button>
+            </div>)}
+            
           </Card>
         </div>
       ))}
+      
     </div>
   );
 };
