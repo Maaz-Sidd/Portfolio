@@ -4,6 +4,9 @@ import AdminIntro from './adminIntro';
 import { ProjectCardsAdmin } from './adminProjects';
 import AdminContact from './adminContact';
 import { Button } from '@nextui-org/button';
+import Loader from '../../components/loading';
+import AdminExperiences from './adminExperiences';
+import AdminSkills from './adminSkills';
 
 function Admin() {
   const [Logged, setLogged] = React.useState(false);
@@ -32,8 +35,8 @@ function Admin() {
           value: "Skills",
           content: (
             <div className="h-full w-full relative rounded-2xl  bg-gradient-to-br from-purple-700 to-violet-900">
-              <p className='p-10 text-xl md:text-4xl font-bold text-white'>About</p>
-              <DummyContent />
+              <p className='p-10 text-xl md:text-4xl font-bold text-white'>Skills</p>
+              <AdminSkills/>
             </div>
           ),
         },
@@ -52,9 +55,9 @@ function Admin() {
           title: "Experiences",
           value: "Experiences",
           content: (
-            <div className="h-full w-full relative rounded-2xl  bg-gradient-to-br from-purple-700 to-violet-900">
+            <div className="w-full relative rounded-2xl  bg-gradient-to-br from-purple-700 to-violet-900">
               <p className='p-10 text-xl md:text-4xl font-bold text-white'>Experiences</p>
-              <DummyContent />
+              <AdminExperiences/> 
             </div>
           ),
         },
@@ -62,7 +65,7 @@ function Admin() {
           title: "Contact",
           value: "Contact",
           content: (
-            <div className="h-full w-full relative rounded-2xl hite bg-gradient-to-br from-purple-700 to-violet-900">
+            <div className="h-full w-full relative rounded-2xl bg-gradient-to-br from-purple-700 to-violet-900">
               <p className='p-10 text-xl md:text-4xl font-bold text-w'>Contact</p>
               <AdminContact/>
             </div>
@@ -73,7 +76,7 @@ function Admin() {
 
     <div>
       {Logged ? 
-        <div className="w-screen m-0 p-0 bg-[#1A202C] relative flex flex-col justify-center items-center antialiased">
+        <div className="w-screen m-0 p-0 bg-[#1A202C] relative flex flex-grow flex-col justify-center items-center antialiased">
             <div className="flex items-end justify-end w-full mr-5 mt-5">
               <Button className="mr-5" onClick={()=>{
                 localStorage.removeItem("token");
@@ -83,16 +86,10 @@ function Admin() {
                 <Tabs tabs={tabs} />
             </div>
         </div>
-                : null}
+                : <Loader/>}
     </div>
   )
 }
-const DummyContent = () => {
-    return (
-      <h1 className=' text-9xl p-4'>
-        Test 
-      </h1>
-    );
-  };
+
 
 export default Admin

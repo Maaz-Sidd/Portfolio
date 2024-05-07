@@ -19,6 +19,8 @@
     "@types/react-redux": "^7.1.33",
     "axios": "^1.6.8",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
+    "firebase": "^10.11.1",
     "framer-motion": "^11.1.7",
     "next-themes": "^0.3.0",
     "react": "^18.2.0",

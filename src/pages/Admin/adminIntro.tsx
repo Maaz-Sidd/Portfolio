@@ -7,12 +7,15 @@ import axios from 'axios';
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 import { Bounce, ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import { ReloadData, ShowLoading, hideLoading } from '../../Redux/rootslice';
 
 
 function AdminIntro() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   
   const {portfolioData} = useSelector((state: RootState) => state.root);
+  const dispatch = useDispatch();
 
   if (!portfolioData) {
     return null; // or any other handling for null portfolioData
@@ -25,6 +28,10 @@ function AdminIntro() {
   };
 
   const  {intro}  = portfolioData!;
+
+  if(!intro){
+    return null;
+  }
   const {_id, name, info, about } = intro[0]! as IntroType;
   
   const [newName, setNewName] = React.useState(name);
@@ -47,10 +54,13 @@ function AdminIntro() {
       };
 
     try {
-        const response = await axios.post('http://192.168.2.199:8000/api/portfolio/update-intro', {
+        dispatch(ShowLoading());
+        const response = await axios.post('http://192.168.2.180:8000/api/portfolio/update-intro', {
             ...updatedIntro, _id: _id, 
         });
         if(response.data.success){
+            dispatch(hideLoading());
+            dispatch(ReloadData(true));
             console.log("yes");
                 toast.success('Intro successfully updated!', {
                     position: "top-center",
@@ -66,6 +76,7 @@ function AdminIntro() {
         }
     } catch (error) {
           console.log(error);
+          dispatch(hideLoading());
           toast.error('Error updating Intro', {
             position: "top-center",
             autoClose: 2000,

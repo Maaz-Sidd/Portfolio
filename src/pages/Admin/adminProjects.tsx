@@ -19,6 +19,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { ReloadData, ShowLoading, hideLoading } from "../../Redux/rootslice";
 
 
 
@@ -33,73 +35,9 @@ export function ProjectCardsAdmin() {
     const [Index, setIndex] = useState<number>(0);
     const [ID, setID] = useState<any>(null);
 
-    const addProject = async (e: React.FormEvent) =>{
-        e.preventDefault();
+    const dispatch = useDispatch();
 
-       const langArray = newLang.split(",");
-       const frameArray = newFrame.split(",");
-       const linkArray = newLinks.split(",");
-       const {_id} = project[Index]! as ProjectType;
-
-    const updateProject = {
-        title: newTitle,
-        description: newDes,
-        languages: langArray,
-        frameworks: frameArray,
-        link: linkArray
-      };
-      let response : any = null;
-    try {
-      if(Action == 'Delete'){
-        response = await axios.post('http://192.168.2.199:8000/api/portfolio/delete-project', {
-            _id : _id
-        });
-      } else if(Action == 'Edit'){
-        response = await axios.post('http://192.168.2.199:8000/api/portfolio/update-project', {
-            ...updateProject, _id:  _id 
-        });
-      } else {
-        response = await axios.post('http://192.168.2.199:8000/api/portfolio/add-project', {
-            ...updateProject 
-        });
-      }
-        if(response.data.success){
-            console.log("yes");
-                toast.success('Intro successfully updated!', {
-                    position: "top-center",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                    transition: Bounce,
-                    });
-            setNewTitle('');
-            setNewDes('');
-            setNewLang('');
-            setNewFrame('');
-            setNewLinks('');
-                    
-        }
-    } catch (error) {
-          console.log(error);
-          toast.error('Error updating Intro', {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            transition: Bounce,
-            });
-    }
-  };
-
-  const {portfolioData} = useSelector((state: RootState) => state.root);
+    const {portfolioData} = useSelector((state: RootState) => state.root);
   
   if (!portfolioData) {
     return null; 
@@ -120,6 +58,75 @@ export function ProjectCardsAdmin() {
     link: string[];
   };
 
+    const addProject = async (e: React.FormEvent) =>{
+        e.preventDefault();
+
+       const langArray = newLang.split(",");
+       const frameArray = newFrame.split(",");
+       const linkArray = newLinks.split(",");
+       const {_id} = project[Index]! as ProjectType;
+
+    const updateProject = {
+        title: newTitle,
+        description: newDes,
+        languages: langArray,
+        frameworks: frameArray,
+        link: linkArray
+      };
+      let response : any = null;
+    try {
+      dispatch(ShowLoading());
+      if(Action == 'Delete'){
+        response = await axios.post('http://192.168.2.180:8000/api/portfolio/delete-project', {
+            _id : _id
+        });
+      } else if(Action == 'Edit'){
+        response = await axios.post('http://192.168.2.180:8000/api/portfolio/update-project', {
+            ...updateProject, _id:  _id 
+        });
+      } else {
+        response = await axios.post('http://192.168.2.180:8000/api/portfolio/add-project', {
+            ...updateProject 
+        });
+      }
+        if(response.data.success){
+          dispatch(hideLoading());
+          dispatch(ReloadData(true));
+            console.log("yes");
+                toast.success('Project successfully updated!', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Bounce,
+                    });
+            setNewTitle('');
+            setNewDes('');
+            setNewLang('');
+            setNewFrame('');
+            setNewLinks('');
+                    
+        }
+    } catch (error) {
+          console.log(error);
+          toast.error('Error updating Project', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+            });
+    }
+  };
+
   const handleDelete = (index: number) => {
     setAction('Delete');
     setIndex(index);
@@ -128,6 +135,11 @@ export function ProjectCardsAdmin() {
     onOpen();
   };
   const handleAdd = () => {
+    setNewTitle('');
+    setNewDes('');
+    setNewLang('');
+    setNewFrame('');
+    setNewLinks('');
     setAction('');
     onOpen();
   };
@@ -191,7 +203,7 @@ export function ProjectCardsAdmin() {
             <Filter projects={project} type="framework" onFilterChange={handleFrameworkFilterChange}/>
         </div>
         <div className=" mr-2">
-            <Button color="primary" onClick={handleAdd}>Add project</Button>
+            <Button color="primary" onClick={handleAdd} className="font-serif font-bold">Add project</Button>
         </div>
       </div>
       <HoverEffect items={filteredProjects} className='md:grid-cols-4' admin handleDelete={handleDelete} handleEdit={handleEdit}/>

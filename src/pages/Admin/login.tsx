@@ -13,7 +13,7 @@ function Login() {
 
     const login = async()=>{
         try {
-            const response = await axios.post('http://192.168.2.199:8000/api/portfolio/admin-login', user);
+            const response = await axios.post('http://192.168.2.180:8000/api/portfolio/admin-login', user);
             if(response.data.success){
                 localStorage.setItem('token', JSON.stringify(response.data));
                 window.location.href = '/admin';
@@ -57,7 +57,7 @@ function Login() {
     }
   return (
     <div className="h-screen w-screen m-0 p-0 bg-[#1A202C] relative flex flex-col justify-center items-center antialiased">
-    <div className='w-1/5 rounded-2xl bg-black flex flex-col items-center justify-center z-[1000] h-[50%]'>
+    <div className='w-11/12 md:w-1/5 rounded-2xl bg-black flex flex-col items-center justify-center z-[1000] h-[50%]'>
       <h1 className='text-white font-serif my-5 text-3xl font-bold'>Admin Login</h1>
       <form className="flex flex-col items-center">
         <Input type="Name" label="username" className='mt-4' value={user.username} onChange={(e) =>  setUser({...user, username: e.target.value})}/>

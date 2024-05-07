@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../Redux/store';
 import axios from 'axios';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { ReloadData, ShowLoading, hideLoading } from '../../Redux/rootslice';
 
 function AdminContact() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -21,11 +23,17 @@ function AdminContact() {
     };
   
     const  {contact}  = portfolioData!;
+    if (!contact) {
+        return null;
+    }
+
     const {_id, gitHub, email, linkedIn } = contact[0]! as IntroType;
     
     const [newGitHub, setNewGitHub] = React.useState(gitHub);
     const [newEmail, setNewEmail] = React.useState(email);
     const [newLinked, setNewLinked] = React.useState(linkedIn);
+
+    const dispatch = useDispatch();
   
   
     const update = async (e: React.FormEvent) =>{
@@ -38,11 +46,14 @@ function AdminContact() {
         };
   
       try {
-          const response = await axios.post('http://192.168.2.199:8000/api/portfolio/update-contact', {
+           dispatch(ShowLoading());
+          const response = await axios.post('http://192.168.2.180:8000/api/portfolio/update-contact', {
               ...updatedIntro, _id: _id, 
           });
           if(response.data.success){
-                  toast.success('Concat successfully updated!', {
+            dispatch(hideLoading());
+            dispatch(ReloadData(true));
+                  toast.success('Contact successfully updated!', {
                       position: "top-center",
                       autoClose: 2000,
                       hideProgressBar: false,
@@ -56,7 +67,8 @@ function AdminContact() {
           }
       } catch (error) {
             console.log(error);
-            toast.error('Error updating Contact', {
+            dispatch(hideLoading());
+            toast.error('Error updating contact', {
               position: "top-center",
               autoClose: 2000,
               hideProgressBar: false,
