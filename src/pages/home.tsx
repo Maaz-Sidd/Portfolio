@@ -110,7 +110,7 @@ function Home() {
       <div id='about' className='flex flex-col min-h-content w-11/12 md:w-7/12 mb-5'> 
       <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-[#d69f1e] dark:bg-[#d69f1e]">
         <div id='about' className='p-3 rounded-[19px] bg-[#1A202C]'> 
-        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent text-white text-center font-serif font-bold mt-3">
+        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-3">
           About me</h1>
           <p className='text-slate-200 mt-6 mx-2 text-sm md:text-base font-serif mb-10'> {about || ''}</p>
         </div>
@@ -119,7 +119,7 @@ function Home() {
     </div>
     <div className=' w-screen flex bg-[#1A202C] justify-center'> 
       <div  className=' flex flex-col min-h-content w-11/12 md:w-7/12 mb-20'>  
-        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent text-white text-center font-serif font-bold mt-3">
+        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-3">
           Skills</h1>
          <Skills/>
 
@@ -128,7 +128,7 @@ function Home() {
 
     <div className=' w-screen flex bg-[#1A202C] justify-center'> 
       <div id='projects' className=' flex flex-col min-h-content w-11/12 xl:w-7/12 mb-10'>  
-        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent text-white text-center font-serif font-bold mt-6">
+        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-6">
           Projects</h1>
          <ProjectCards/>
 
@@ -136,7 +136,7 @@ function Home() {
     </div>
     <div className=' w-screen flex bg-[#1A202C] justify-center'> 
       <div id='experiences' className=' flex flex-col min-h-content w-11/12 lg:w-7/12 mb-20'>  
-        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent text-white text-center font-serif font-bold mt-6">
+        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-6">
           Experiences</h1>
           <ExperiencesSection/>
 
@@ -144,7 +144,7 @@ function Home() {
     </div>
     <div className=' w-screen flex bg-[#1A202C] justify-center'> 
       <div id='contact' className=' flex flex-col min-h-content w-11/12 lg:w-7/12 '>  
-        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent text-white text-center font-serif font-bold mt-6">
+        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-6">
           Contact</h1>
           <div className='border-b-2 border-[#d8895b]'></div>
             <p className='text-white text-center mt-4 font-serif text-lg'>Get in touch with me</p> 

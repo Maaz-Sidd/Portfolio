@@ -118,7 +118,7 @@ export const CardDescription = ({
   return (
     <p
       className={
-        " text-zinc-300 tracking-wide leading-relaxed font-serif text-sm md:text-md"}
+        " text-zinc-300 tracking-wide leading-relaxed font-serif text-sm md:text-md mt-2"}
     >
       {children}
     </p>
@@ -132,7 +132,7 @@ export const Languages = ({
   className?: string;
   items: string[];
 }) => {
-  if (items[0] == null){
+  if (items[0] == ''){
     return null;
   }
   return (
@@ -160,7 +160,7 @@ export const FrameWorks = ({
   items: string[];
 }) => {
 
-  if (items[0] == null){
+  if (items[0] == ''){
     return null;
   }
   return (
@@ -191,6 +191,9 @@ export const Links = ({
 }) => {
   const gitHubPattern = /^https?:\/\/github\.com\//;
   const YoutubePattern = /^https?:\/\/youtube\.com\//;
+  if (items[0] == ''){
+    return null;
+  }
   if (!Array.isArray(items)) {
     return null; // Return null or handle the case where items is not an array
   }

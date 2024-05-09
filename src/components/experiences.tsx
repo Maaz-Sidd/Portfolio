@@ -1,6 +1,5 @@
 "use client";
-import React, { useState } from "react";
-import { twMerge } from "tailwind-merge";
+import  { useState } from "react";
 import { TracingBeam } from "./ui/tracing-beam";
 import { useSelector } from "react-redux";
 import { RootState } from "../Redux/store";

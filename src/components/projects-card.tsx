@@ -76,8 +76,17 @@ type Project_type = {
 export function Filter({ projects, type, onFilterChange }: { projects: Project_type[], type: string,  onFilterChange: (selectedKeys: Set<string>) => void}) {
 
   const uniqueItems: string[] = Array.from(
-    new Set(projects.flatMap((project) => type === 'language' ? project.languages : project.frameworks))
+    new Set(
+      projects.flatMap((project) => {
+        if (type === 'language') {
+          return project.languages.filter(item => item !== ''); // Exclude empty strings
+        } else {
+          return project.frameworks.filter(item => item !== ''); // Exclude empty strings
+        }
+      })
+    )
   );
+  
 
   
   const items: { key: string; label: string }[] = uniqueItems.map(
