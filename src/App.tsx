@@ -24,7 +24,7 @@ function App() {
   const getPortfolioApi = async () => {
     try{
       dispatch(ShowLoading());
-      const response = await axios.get('http://192.168.2.180:8000/api/portfolio/get-portfolio-data');
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/get-portfolio-data`);
       dispatch(setPortfolioData(response.data));
       dispatch(ReloadData(false));
       dispatch(hideLoading());

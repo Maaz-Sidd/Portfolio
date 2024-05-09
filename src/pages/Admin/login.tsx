@@ -13,7 +13,7 @@ function Login() {
 
     const login = async()=>{
         try {
-            const response = await axios.post('http://192.168.2.180:8000/api/portfolio/admin-login', user);
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/admin-login`, user);
             if(response.data.success){
                 localStorage.setItem('token', JSON.stringify(response.data));
                 window.location.href = '/admin';

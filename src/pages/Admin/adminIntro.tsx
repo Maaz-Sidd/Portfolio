@@ -55,7 +55,7 @@ function AdminIntro() {
 
     try {
         dispatch(ShowLoading());
-        const response = await axios.post('http://192.168.2.180:8000/api/portfolio/update-intro', {
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/update-intro`, {
             ...updatedIntro, _id: _id, 
         });
         if(response.data.success){

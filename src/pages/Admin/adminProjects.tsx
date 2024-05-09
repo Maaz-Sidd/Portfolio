@@ -77,15 +77,15 @@ export function ProjectCardsAdmin() {
     try {
       dispatch(ShowLoading());
       if(Action == 'Delete'){
-        response = await axios.post('http://192.168.2.180:8000/api/portfolio/delete-project', {
+        response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/delete-project`, {
             _id : _id
         });
       } else if(Action == 'Edit'){
-        response = await axios.post('http://192.168.2.180:8000/api/portfolio/update-project', {
+        response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/update-project`, {
             ...updateProject, _id:  _id 
         });
       } else {
-        response = await axios.post('http://192.168.2.180:8000/api/portfolio/add-project', {
+        response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/add-project`, {
             ...updateProject 
         });
       }

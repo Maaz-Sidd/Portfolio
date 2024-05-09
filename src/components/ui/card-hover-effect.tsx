@@ -31,7 +31,7 @@ export const HoverEffect = ({
         `grid grid-cols-1 md:grid-cols-2  py-6 ${className}`
       }
     >
-      {items.map((item, idx) => (
+      {items.slice().reverse().map((item, idx) => (
         <div
           className="relative group  block p-1 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}
@@ -64,8 +64,8 @@ export const HoverEffect = ({
             <FrameWorks items={item.frameworks}/>
             {admin  && (
             <div className="flex flex-column mt-2 items-center align-end justify-end bottom-0 w-full"> 
-                <Button className="mr-3" color="danger" onClick={()=>{handleDelete(idx)}}>Delete</Button>
-                <Button onClick={()=>{handleEdit(idx)}}>Edit</Button>
+                <Button className="mr-3" color="danger" onClick={()=>{handleDelete(Math.abs(idx-items.length+1))}}>Delete</Button>
+                <Button onClick={()=>{handleEdit(Math.abs(idx-items.length+1))}}>Edit</Button>
             </div>)}
             
           </Card>

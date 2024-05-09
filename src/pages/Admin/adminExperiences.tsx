@@ -66,15 +66,15 @@ const addExperience = async (e: React.FormEvent) =>{
     try {
         dispatch(ShowLoading());
         if(Action == 'Delete'){
-            response = await axios.post('http://192.168.2.180:8000/api/portfolio/delete-experience', {
+            response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/delete-experience`, {
                 _id : _id
             });
         } else if(Action == 'Edit'){
-            response = await axios.post('http://192.168.2.180:8000/api/portfolio/update-experience', {
+            response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/update-experience`, {
                 ...updateExperience, _id:  _id 
             });
         } else {
-            response = await axios.post('http://192.168.2.180:8000/api/portfolio/add-experience', {
+            response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/add-experience`, {
                 ...updateExperience
             });
     }

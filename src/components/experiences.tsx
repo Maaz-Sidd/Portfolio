@@ -33,7 +33,7 @@ export default function ExperiencesSection() {
   return (
     <TracingBeam className="px-6">
       <div className="max-w-12/12 lg:max-w-9/12 ml-10 lg:ml-5 antialiased pt-10 relative">
-        {Items.map((item, index) => (
+        {Items.slice().reverse().map((item, index) => (
           <div key={`content-${index}`} className="mb-10">
             <h2 className= "text-white text-bold text-2xl lg:text-5xl font-serif w-fit py-1 mb-1">
               {item.company}

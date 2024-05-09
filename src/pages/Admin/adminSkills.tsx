@@ -119,14 +119,14 @@ function AdminSkills() {
             dispatch(ShowLoading());
             console.log({...updateSkill});
             if(action === 'add'){
-                response = await axios.post('http://192.168.2.180:8000/api/portfolio/add-skill', {...updateSkill});
+                response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/add-skill`, {...updateSkill});
             } else {
-                response = await axios.post('http://192.168.2.180:8000/api/portfolio/delete-skill', {_id : newID});
+                response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/delete-skill`, {_id : newID});
             }
             if(response.data.success){
                 if (action == 'delete'){            
                     // Create a reference to the file to delete
-                    const desertRef = ref(storage, newTab + '/' + newFile + '.png');
+                    const desertRef = ref(storage, newTab + '/' + newFile);
                     deleteObject(desertRef).then(() => {
                         console.log('file deleted from firebase!');
                         }).catch((error) => {
