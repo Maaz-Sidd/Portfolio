@@ -1,16 +1,19 @@
-import { useEffect, useState } from 'react'
-import '../App.css'
-import { IntroSection } from '../components/intro.tsx'
-import { BackgroundGradient } from "../components/ui/background-gradient";
-import { ProjectCards } from '../components/projects-card.tsx';
-import ExperiencesSection  from '../components/experiences.tsx';
-import  Skills  from '../components/skills.tsx';
+import './App.css'
+import { IntroSection } from './components/intro.tsx'
+import { BackgroundGradient } from "./components/ui/background-gradient.tsx";
+import { ProjectCards } from './components/projects-card.tsx';
+import ExperiencesSection  from './components/experiences.tsx';
+import  Skills  from './components/skills.tsx';
 import { useSelector } from 'react-redux';
-import { RootState } from '../Redux/store.ts';
+import { RootState } from './Redux/store.ts';
+import emailImage from './assets/email.png';
+import GithubImage from './assets/github2.png';
+import LinkedInImage from './assets/linkedin.png'
+import { Fade } from "react-awesome-reveal";
 
 
 
-function NavbarLink({text = '', link = '', border = false}){
+function NavbarLink({text, link, border }: {text:string, link:string, border:boolean}){
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -59,12 +62,12 @@ function smoothScrollTo(targetElement: HTMLElement, duration: number) {
 
 
 function Home() {
-
+//className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-[#d69f1e] dark:bg-[#d69f1e]"
   const navLinks = [
-    { text: 'Home',        link: '#home' },
-    { text: 'About',        link: '#about' },
-    { text: 'Projects',     link: '#projects'},
-    { text: 'Experiences',  link: '#experiences'},
+    { text: 'Home',        link: '#home' , border: false},
+    { text: 'About',        link: '#about' , border:false},
+    { text: 'Projects',     link: '#projects', border: false},
+    { text: 'Experiences',  link: '#experiences', border: false},
     { text: 'Contact',      link: '#contact', border: true},
 ]
   const {portfolioData} = useSelector((state: RootState) => state.root);
@@ -91,13 +94,12 @@ function Home() {
   return (
     <>
     <div id='home' className='flex flex-col'>
-
       <div className="relative w-full flex items-center justify-center">
         <div className={`fixed top-6 inset-x-0 max-w-2xl mx-auto z-50 flex items-center justify-center `} >
             <div className=" bg-[#0b0d0e] border-[#d8895b] border-2 rounded-[100px] flex items-center justify-center shadow">
                             {navLinks.map((navLink, index)=>{
                                 return (
-                                    <NavbarLink text={navLink.text} link={navLink.link} border={navLink.border}/>
+                                    <NavbarLink key={index} text={navLink.text} link={navLink.link} border={navLink.border}/>
                                 )
                             })}
             </div>
@@ -106,29 +108,35 @@ function Home() {
       <IntroSection/>
       
     </div>
+    
     <div className=' w-screen flex bg-[#1A202C] justify-center'> 
-      <div id='about' className='flex flex-col min-h-content w-11/12 md:w-7/12 mb-5'> 
-      <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-[#d69f1e] dark:bg-[#d69f1e]">
-        <div id='about' className='p-3 rounded-[19px] bg-[#1A202C]'> 
-        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-3">
-          About me</h1>
-          <p className='text-slate-200 mt-6 mx-2 text-sm md:text-base font-serif mb-10'> {about || ''}</p>
-        </div>
-       </BackgroundGradient>                     
-      </div>
+      <Fade className='flex items-center justify-center' delay={200}>
+        <div id='about' className='flex flex-col min-h-content w-11/12 md:w-7/12 mb-5'> 
+          <BackgroundGradient >
+            <div id='about' className='p-3 rounded-[19px] bg-[#1A202C]'> 
+            <h1 className="relative z-10 text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-3">
+                About me</h1>
+            <p className='text-slate-200 mt-6 mx-2 text-sm md:text-base font-serif mb-10'> {about || ''}</p>
+            </div>
+          </BackgroundGradient>                     
+          </div>
+      </Fade>
     </div>
     <div className=' w-screen flex bg-[#1A202C] justify-center'> 
+    <Fade className='flex justify-center' delay={200}>
       <div  className=' flex flex-col min-h-content w-11/12 md:w-7/12 mb-20'>  
-        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-3">
+        <h1 className="relative z-10 text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-3">
           Skills</h1>
          <Skills/>
 
       </div>
+      </Fade>
     </div>
 
     <div className=' w-screen flex bg-[#1A202C] justify-center'> 
-      <div id='projects' className=' flex flex-col min-h-content w-11/12 xl:w-7/12 mb-10'>  
-        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-6">
+    
+      <div id='projects' className=' flex flex-col w-11/12 xl:w-7/12 mb-10'>  
+      <h1 className="relative z-10 text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-6 mb-10">
           Projects</h1>
          <ProjectCards/>
 
@@ -136,7 +144,7 @@ function Home() {
     </div>
     <div className=' w-screen flex bg-[#1A202C] justify-center'> 
       <div id='experiences' className=' flex flex-col min-h-content w-11/12 lg:w-7/12 mb-20'>  
-        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-6">
+        <h1 className="relative z-10 text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-6">
           Experiences</h1>
           <ExperiencesSection/>
 
@@ -144,24 +152,24 @@ function Home() {
     </div>
     <div className=' w-screen flex bg-[#1A202C] justify-center'> 
       <div id='contact' className=' flex flex-col min-h-content w-11/12 lg:w-7/12 '>  
-        <h1 className="relative z-10 text-2xl md:text-4xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-6">
+        <h1 className="relative z-10 text-5xl md:text-6xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-center font-serif font-bold mt-6">
           Contact</h1>
           <div className='border-b-2 border-[#d8895b]'></div>
             <p className='text-white text-center mt-4 font-serif text-lg'>Get in touch with me</p> 
             <div className='flex items-center justify-center content-center mt-4'>
               <a href= {gitHub}>
               <div className="rounded-full overflow-hidden mr-2">
-                <img src='/src/assets/github2.png' className='w-6 h-auto bg-transparent' ></img>
+                <img src={GithubImage} className='w-6 h-auto bg-transparent' ></img>
               </div>
               </a>
               <button onClick={() => window.location.href = `mailto:${email}`}>
               <div className="rounded-full overflow-hidden mr-2">
-                <img src='/src/assets/email.png' className='w-6 h-auto bg-transparent' ></img>
+                <img src={emailImage} className='w-6 h-auto bg-transparent' ></img>
               </div>
               </button>
               <a href= {linkedIn}>
               <div className="rounded-full overflow-hidden mr-2">
-                <img src='/src/assets/linkedin.png' className='w-6 h-auto bg-transparent' ></img>
+                <img src={LinkedInImage} className='w-6 h-auto bg-transparent' ></img>
               </div>
               </a>
           </div>  

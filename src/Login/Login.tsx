@@ -1,10 +1,12 @@
 import React from 'react'
-import { BackgroundBeams } from '../../components/ui/background-beams'
+import { BackgroundBeams } from '../components/ui/background-beams'
 import { Button, Input } from '@nextui-org/react'
 import axios from 'axios';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 
+
 function Login() {
+  ;
 
     const [user, setUser] = React.useState({
         username: "",

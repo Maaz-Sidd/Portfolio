@@ -1,6 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@nextui-org/react";
+import redirectImage from '../../assets/redirect.svg';
+import GithubImage from '../../assets/github.svg';
+import { Fade } from "react-awesome-reveal";
 
 export const HoverEffect = ({
   items,
@@ -32,6 +35,7 @@ export const HoverEffect = ({
       }
     >
       {items.slice().reverse().map((item, idx) => (
+
         <div
           className="relative group  block p-1 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}
@@ -53,8 +57,11 @@ export const HoverEffect = ({
                 }}
               />
             )}
+            
           </AnimatePresence>
           <Card>
+          <Fade className='flex' delay={200}>
+
             <CardTitle>{item.title}</CardTitle>
             <Links items={item.link}/>
             <CardDescription>{item.description}</CardDescription>
@@ -66,10 +73,13 @@ export const HoverEffect = ({
             <div className="flex flex-column mt-2 items-center align-end justify-end bottom-0 w-full"> 
                 <Button className="mr-3" color="danger" onClick={()=>{handleDelete(Math.abs(idx-items.length+1))}}>Delete</Button>
                 <Button onClick={()=>{handleEdit(Math.abs(idx-items.length+1))}}>Edit</Button>
-            </div>)}
-            
+            </div>)
+            }
+                    </Fade>
+
           </Card>
         </div>
+        
       ))}
       
     </div>
@@ -77,10 +87,8 @@ export const HoverEffect = ({
 };
 
 export const Card = ({
-  className,
   children,
 }: {
-  className?: string;
   children: React.ReactNode;
 }) => {
   return (
@@ -96,23 +104,19 @@ export const Card = ({
   );
 };
 export const CardTitle = ({
-  className,
   children,
 }: {
-  className?: string;
   children: React.ReactNode;
 }) => {
   return (
-    <h4 className={"text-zinc-100 font-bold tracking-wide border-[#d8895b] border-b-2 font-serif text-md md:text-2xl"}>
+    <h4 className={"text-zinc-100 font-bold tracking-wide border-[#d8895b] border-b-2 font-serif text-lgd md:text-2xl w-full"}>
       {children}
     </h4>
   );
 };
 export const CardDescription = ({
-  className,
   children,
 }: {
-  className?: string;
   children: React.ReactNode;
 }) => {
   return (
@@ -126,10 +130,8 @@ export const CardDescription = ({
 };
 
 export const Languages = ({
-  className,
   items,
 }: {
-  className?: string;
   items: string[];
 }) => {
   if (items[0] == ''){
@@ -153,10 +155,8 @@ export const Languages = ({
 };
 
 export const FrameWorks = ({
-  className,
   items,
 }: {
-  className?: string;
   items: string[];
 }) => {
 
@@ -183,10 +183,8 @@ export const FrameWorks = ({
 };
 
 export const Links = ({
-  className,
   items,
 }: {
-  className?: string;
   items: string[];
 }) => {
   const gitHubPattern = /^https?:\/\/github\.com\//;
@@ -203,11 +201,12 @@ export const Links = ({
   const otherLinks = items.filter(item => !gitHubPattern.test(item));
 
   return (
+    
     <div className="flex flex-row-reverse mt-2">
       {otherLinks.map((item:string, index:number) => (
         <a key={index} href={item} target="_blank" rel="noopener noreferrer">
           <img
-            src="/src/assets/redirect.svg"
+            src={redirectImage}
             alt="Redirect Logo"
             className="w-5 h-auto mr-2 bg-transparent"
           />
@@ -217,7 +216,7 @@ export const Links = ({
         <a key={index} href={item} target="_blank" rel="noopener noreferrer">
           
           <img
-            src="/src/assets/github.svg"
+            src={GithubImage}
             alt="GitHub Logo"
             className="w-5 h-auto mr-2 bg-transparent"
           />
@@ -226,7 +225,7 @@ export const Links = ({
       {youtubeLinks.map((item:string, index:number) => (
         <a key={index} href={item} target="_blank" rel="noopener noreferrer">
           <img
-            src="/src/assets/youtube.png"
+            src="../../assets/youtube.png"
             alt="GitHub Logo"
             className="w-5 h-auto mr-2 bg-transparent"
           />

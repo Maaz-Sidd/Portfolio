@@ -22,12 +22,17 @@ export function ProjectCards() {
   if (!project) {
     return null; // or any other handling for null project
   }
-  const [Items, setItems] = useState<Project_type[]>(project);
+  const [Items] = useState<Project_type[]>(project);
+  //setItems(project);
   
   const [selectedLanguageKeys, setSelectedLanguageKeys] = useState(new Set<string>());
   const [selectedFrameworkKeys, setSelectedFrameworkKeys] = useState(new Set<string>());
 
   const [filteredProjects, setFilteredProjects] = useState<Project_type[]>(project);
+
+  const handleDelete = () => {
+    return null;
+  } 
 
   const handleLanguageFilterChange = (selectedKeys: Set<string>) => {
     setSelectedLanguageKeys(selectedKeys);
@@ -60,7 +65,7 @@ export function ProjectCards() {
         </div>
         <Filter projects={project} type="framework" onFilterChange={handleFrameworkFilterChange}/>
       </div>
-      <HoverEffect items={filteredProjects} />
+      <HoverEffect items={filteredProjects} handleDelete={handleDelete} handleEdit={handleDelete}/>
     </div>
   );
 }
@@ -86,7 +91,12 @@ export function Filter({ projects, type, onFilterChange }: { projects: Project_t
       })
     )
   );
-  
+
+
+  const handleSelectionChangeAdapter = (selected: any) => {
+    const selectedKeys = new Set<string>(Array.from(selected));
+    setSelectedKeys(selectedKeys);
+  };
 
   
   const items: { key: string; label: string }[] = uniqueItems.map(
@@ -122,7 +132,7 @@ export function Filter({ projects, type, onFilterChange }: { projects: Project_t
       <DropdownMenu aria-label="Dynamic Actions" 
         selectionMode="multiple"
         selectedKeys={selectedKeys} 
-        onSelectionChange={setSelectedKeys}
+        onSelectionChange={handleSelectionChangeAdapter}
         className="bg-black"
         items={items}>
         {(item) => (

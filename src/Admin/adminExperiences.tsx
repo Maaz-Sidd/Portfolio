@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
-import { RootState } from '../../Redux/store';
+import { RootState } from '../Redux/store';
 import { Button } from '@nextui-org/button';
 import { Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, useDisclosure } from '@nextui-org/react';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { ReloadData, ShowLoading, hideLoading } from '../../Redux/rootslice';
+import { ReloadData, ShowLoading, hideLoading } from '../Redux/rootslice';
 
 function AdminExperiences() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -18,7 +18,7 @@ function AdminExperiences() {
     const [newSkill, setNewSkill] = React.useState('');
     const [Action, setAction] = useState<string>('');
     const [Index, setIndex] = useState<number>(0);
-    const [ID, setID] = useState<any>(null);
+    //const [ID, setID] = useState<any>(null);
     const dispatch = useDispatch();
     
     const {portfolioData} = useSelector((state: RootState) => state.root);
@@ -44,7 +44,8 @@ function AdminExperiences() {
     skills: string[];
   }
 
-  const [Items, setItems] = useState<Experience[]>(experience);
+  const [Items] = useState<Experience[]>(experience);
+  //setItems(experience);
 
 
 const addExperience = async (e: React.FormEvent) =>{
@@ -124,8 +125,8 @@ const addExperience = async (e: React.FormEvent) =>{
 const handleDelete = (index: number) => {
     setAction('Delete');
     setIndex(index);
-    const {_id} = experience[index]! as Experience;
-    setID(_id);    
+    //const {_id} = experience[index]! as Experience;
+    //setID(_id);    
     onOpen();
   };
   const handleAdd = () => {
@@ -142,7 +143,7 @@ const handleDelete = (index: number) => {
   const handleEdit = (index: number) => {
     setAction('Edit');
     setIndex(index);
-    const {_id, title, description, company, date_start, date_end, skills} = experience[index]! as Experience;
+    const { title, description, company, date_start, date_end, skills} = experience[index]! as Experience;
     const newSkill = Array.isArray(skills) ? skills.join(',') : '';
 
     setNewTitle(title);
@@ -151,7 +152,7 @@ const handleDelete = (index: number) => {
     setNewStart(date_start);
     setNewEnd(date_end);
     setNewSkill(newSkill);
-    setID(_id);
+    //setID(_id);
     onOpen();
     console.log(index);
   };
@@ -253,10 +254,8 @@ const handleDelete = (index: number) => {
 };
 
 export const Skills = ({
-    className,
     items,
   }: {
-    className?: string;
     items: string[];
   }) => {
     if (items[0] == null){

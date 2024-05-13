@@ -1,6 +1,4 @@
-import React from "react";
 import {Tabs, Tab, Card, CardBody} from "@nextui-org/react";
-import styles from '/src/App.css';
 import { useSelector } from "react-redux";
 import { RootState } from "../Redux/store";
 
@@ -21,7 +19,7 @@ export default function Skills() {
         <Tab key="Languages" title="Languages">
           <Card className="bg-black">
             <CardBody className=" text-white font-serif">
-              <div className="flex flex-column">
+              <div className="flex flex-column flex-wrap">
                 <MapSkills tab='Languages' skills={skill}/>
               </div>
             </CardBody>
@@ -30,16 +28,16 @@ export default function Skills() {
         <Tab key="Framworks" title="Frameworks">
           <Card className="bg-black">
             <CardBody>
-            <div className="flex flex-column">
+            <div className="flex flex-column flex-wrap">
                 <MapSkills tab='Frameworks' skills={skill}/>
               </div>
             </CardBody>
           </Card>  
         </Tab>
-        <Tab key="Technologies" title="Technologies">
+        <Tab key="Technologies/Tools" title="Technologies/Tools">
           <Card className="bg-black">
             <CardBody>
-            <div className="flex flex-column">
+            <div className="flex flex-column flex-wrap">
                 <MapSkills tab='Technologies' skills={skill} />
               </div>
             </CardBody>
@@ -64,10 +62,10 @@ export function MapSkills ({tab, skills}:{tab:string, skills: skill_type[]} ){
   });
 
   return (
-      <div className='flex'>
+      <div className='flex flex-wrap justify-center'>
           {tabFilter.map((skill, index) => (
               <div key={skill._id}>
-                  <img src={skill.Link} className="w-16 h-auto mx-2" alt={`Skill ${index}`} />
+                  <img src={skill.Link} className="w-16 h-auto m-2" alt={`Skill ${index}`} />
               </div>
           )) }
       

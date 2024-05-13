@@ -11,7 +11,7 @@ function NavbarLink({text = '', link = '', border = false}){
     )
 }
 
-export function Navbar({ className }: { className?: string }) {
+export function Navbar() {
  // const [active, setActive] = useState<string | null>(null);
   //setActive('Home');
 
@@ -28,7 +28,7 @@ export function Navbar({ className }: { className?: string }) {
             <div className=" bg-[#0b0d0e] border-[#a58c7e] border rounded-[100px] flex items-center justify-center shadow">
                             {navLinks.map((navLink, index)=>{
                                 return (
-                                    <NavbarLink text={navLink.text} link={navLink.link} border={navLink.border}/>
+                                    <NavbarLink key={index} text={navLink.text} link={navLink.link} border={navLink.border}/>
                                 )
                             })}
             </div>

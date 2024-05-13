@@ -3,15 +3,14 @@ import { Card, CardBody } from '@nextui-org/card'
 import { Tab, Tabs } from '@nextui-org/tabs'
 import React, { useEffect, useRef, useState } from 'react'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
-import app from '../../firebase';
+import app from '../firebase';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../Redux/store';
+import { RootState } from '../Redux/store';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { ReloadData, ShowLoading, hideLoading } from '../../Redux/rootslice';
+import { ReloadData, ShowLoading, hideLoading } from '../Redux/rootslice';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@nextui-org/react';
-import { set } from 'firebase/database';
 
 
 function AdminSkills() {
@@ -21,7 +20,7 @@ function AdminSkills() {
     const [newTab, setNewTab] = useState<string>('');
     const [newFile, setNewFile] = useState<string>('');
     const [newID, setNewID] = useState<any>();
-    const [newPicPercent, setNewPicPercent] = useState<number>();
+    //const [newPicPercent, setNewPicPercent] = useState<number>();
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const dispatch = useDispatch();
 
@@ -179,9 +178,9 @@ function AdminSkills() {
     <div className="flex w-full flex-col items-center mt-5">
       <Tabs aria-label="Options" color="warning" radius="full">
         <Tab key="Languages" title="Languages">
-          <Card className="bg-black">
+          <Card className="bg-black" >
             <CardBody className=" text-white font-serif">
-              <div className="flex flex-column">
+              <div className="flex flex-column flex-wrap">
                 <MapSkills tab='Languages' skills={skill} onDelete={handleDelete}/>
                 <div className='flex justify-center content-center items-center'>
                     <Button className=' w-4' onClick={()=>handleClick('Languages')}>+</Button>
@@ -195,7 +194,7 @@ function AdminSkills() {
         <Tab key="Framworks" title="Frameworks">
           <Card className="bg-black">
             <CardBody>
-            <div className="flex flex-column">
+            <div className="flex flex-column flex-wrap">
                 <MapSkills tab='Frameworks' skills={skill} onDelete={handleDelete}/>
                 <div className='flex justify-center content-center items-center'>
                     <Button className=' w-4' onClick={()=>handleClick('Frameworks')}>+</Button>
@@ -209,7 +208,7 @@ function AdminSkills() {
         <Tab key="Technologies" title="Technologies">
           <Card className="bg-black">
             <CardBody>
-            <div className="flex flex-column">
+            <div className="flex flex-column flex-wrap">
                 <MapSkills tab='Technologies' skills={skill} onDelete={handleDelete}/>
                 <div className='flex justify-center content-center items-center'>
                     <Button className=' w-4' onClick={()=>handleClick('Technologies')}>+</Button>

@@ -1,4 +1,3 @@
-import React from 'react'
 import { BackgroundBeams } from "./ui/background-beams";
 
 function Loader() {

@@ -3,6 +3,7 @@ import  { useState } from "react";
 import { TracingBeam } from "./ui/tracing-beam";
 import { useSelector } from "react-redux";
 import { RootState } from "../Redux/store";
+import { Fade } from "react-awesome-reveal";
 
 export default function ExperiencesSection() {
 
@@ -28,13 +29,16 @@ export default function ExperiencesSection() {
     skills: string[];
   }
 
-  const [Items, setItems] = useState<Experience[]>(experience);
+  const [Items] = useState<Experience[]>(experience);
+  //setItems(experience);
   return (
-    <TracingBeam className="px-6">
-      <div className="max-w-12/12 lg:max-w-9/12 ml-10 lg:ml-5 antialiased pt-10 relative">
+    <TracingBeam>        
+          <div className="max-w-12/12 lg:max-w-9/12 ml-10 lg:ml-5 antialiased pt-10 relative">
         {Items.slice().reverse().map((item, index) => (
+          <Fade direction='right' className='flex items-center justify-center' delay={200}>
+
           <div key={`content-${index}`} className="mb-10">
-            <h2 className= "text-white text-bold text-2xl lg:text-5xl font-serif w-fit py-1 mb-1">
+            <h2 className= "text-white text-bold text-2xl lg:text-4xl font-serif w-fit py-1 mb-1">
               {item.company}
             </h2>
 
@@ -50,6 +54,7 @@ export default function ExperiencesSection() {
             <Skills items={item.skills}/>
 
           </div>
+          </Fade>
         ))}
       </div>
     </TracingBeam>
@@ -59,10 +64,8 @@ export default function ExperiencesSection() {
 
 
 export const Skills = ({
-  className,
   items,
 }: {
-  className?: string;
   items: string[];
 }) => {
   if (items[0] == null){

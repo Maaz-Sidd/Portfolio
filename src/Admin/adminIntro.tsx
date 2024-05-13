@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux';
-import { RootState } from '../../Redux/store';
+import { RootState } from '../Redux/store';
 import { Input } from '@nextui-org/react';
 import {Textarea} from "@nextui-org/react";
 import axios from 'axios';
@@ -8,7 +8,7 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDis
 import { Bounce, ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
-import { ReloadData, ShowLoading, hideLoading } from '../../Redux/rootslice';
+import { ReloadData, ShowLoading, hideLoading } from '../Redux/rootslice';
 
 
 function AdminIntro() {

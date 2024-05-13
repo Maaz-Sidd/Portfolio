@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
-import { Tabs } from '../../components/ui/tabs'
+import { Tabs } from '../components/ui/tabs'
 import AdminIntro from './adminIntro';
 import { ProjectCardsAdmin } from './adminProjects';
 import AdminContact from './adminContact';
 import { Button } from '@nextui-org/button';
-import Loader from '../../components/loading';
+import Loader from '../components/loading';
 import AdminExperiences from './adminExperiences';
 import AdminSkills from './adminSkills';
 

@@ -1,11 +1,11 @@
-import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, useDisclosure } from '@nextui-org/react';
+import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader,  useDisclosure } from '@nextui-org/react';
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { RootState } from '../../Redux/store';
+import { RootState } from '../Redux/store';
 import axios from 'axios';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-import { ReloadData, ShowLoading, hideLoading } from '../../Redux/rootslice';
+import { ReloadData, ShowLoading, hideLoading } from '../Redux/rootslice';
 
 function AdminContact() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();

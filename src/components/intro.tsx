@@ -1,9 +1,9 @@
 "use client";
-import React from "react";
 import { BackgroundBeams } from "./ui/background-beams";
 import Typewriter from 'typewriter-effect';
 import { RootState } from "../Redux/store";
 import { useSelector } from "react-redux";
+import { Fade } from "react-awesome-reveal";
 
 export function IntroSection() {
 
@@ -23,11 +23,18 @@ export function IntroSection() {
 
   return (
     <div className="h-screen w-screen m-0 p-0 bg-[#1A202C] relative flex flex-col justify-center items-center antialiased">
-      {portfolioData && (<div className="max-w-2xl mx-auto p-0">
-        
+      <BackgroundBeams />
+
+      {portfolioData && (
+      
+      <div className="max-w-2xl mx-auto p-0">
+      <Fade direction="down" triggerOnce>  
         <h1 className="relative z-10 text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600  text-center font-serif font-bold">
           Hi, I'm <br></br>{name || ''}
         </h1>
+        </Fade>
+
+        <Fade direction="up" triggerOnce>
         <p className="text-[#d8895b] max-w-lg font-serif mx-auto my-2 text-base text-center relative z-10">
         <Typewriter
           options={{
@@ -38,8 +45,9 @@ export function IntroSection() {
           }} 
         />
         </p> 
-      </div>)}
-      <BackgroundBeams />
+        </Fade>
+      </div>
+      )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { HoverEffect} from "../../components/ui/card-hover-effect";
+import { HoverEffect} from "../components/ui/card-hover-effect";
 import {
   Dropdown,
   DropdownTrigger,
@@ -16,11 +16,11 @@ import {
 import {Button} from "@nextui-org/react";
 import React, { useState, useMemo} from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../Redux/store";
+import { RootState } from "../Redux/store";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { ReloadData, ShowLoading, hideLoading } from "../../Redux/rootslice";
+import { ReloadData, ShowLoading, hideLoading } from "../Redux/rootslice";
 
 
 
@@ -33,7 +33,7 @@ export function ProjectCardsAdmin() {
     const [newLinks, setNewLinks] = React.useState('');
     const [Action, setAction] = useState<string>('');
     const [Index, setIndex] = useState<number>(0);
-    const [ID, setID] = useState<any>(null);
+    //const [ID, setID] = useState<any>(null);
 
     const dispatch = useDispatch();
 
@@ -130,8 +130,8 @@ export function ProjectCardsAdmin() {
   const handleDelete = (index: number) => {
     setAction('Delete');
     setIndex(index);
-    const {_id} = project[index]! as ProjectType;
-    setID(_id);    
+    //const {_id} = project[index]! as ProjectType;
+    //setID(_id);    
     onOpen();
   };
   const handleAdd = () => {
@@ -147,7 +147,7 @@ export function ProjectCardsAdmin() {
   const handleEdit = (index: number) => {
     setAction('Edit');
     setIndex(index);
-    const {_id, title, description, languages, frameworks, link} = project[index]! as ProjectType;
+    const { title, description, languages, frameworks, link} = project[index]! as ProjectType;
     const newLang = Array.isArray(languages) ? languages.join(',') : '';
     const newFrame = Array.isArray(frameworks) ? frameworks.join(',') : '';
     const newLinks = Array.isArray(link) ? link.join(',') : '';
@@ -157,13 +157,14 @@ export function ProjectCardsAdmin() {
     setNewLang(newLang);
     setNewFrame(newFrame);
     setNewLinks(newLinks);
-    setID(_id);
+    //setID(_id);
     onOpen();
     console.log(index);
   };
 
 
-  const [Items, setItems] = useState<Project_type[]>(project);
+  const [Items] = useState<Project_type[]>(project);
+  
   
   const [selectedLanguageKeys, setSelectedLanguageKeys] = useState(new Set<string>());
   const [selectedFrameworkKeys, setSelectedFrameworkKeys] = useState(new Set<string>());
@@ -296,6 +297,12 @@ export function Filter({ projects, type, onFilterChange }: { projects: Project_t
   );
 
   const [selectedKeys, setSelectedKeys] = useState(new Set<string>());
+  
+  const handleSelectionChangeAdapter = (selected: any) => {
+    const selectedKeys = new Set<string>(Array.from(selected));
+    setSelectedKeys(selectedKeys);
+  };
+  
 
   const selectedValue = useMemo(
     () => {
@@ -321,7 +328,7 @@ export function Filter({ projects, type, onFilterChange }: { projects: Project_t
       <DropdownMenu aria-label="Dynamic Actions" 
         selectionMode="multiple"
         selectedKeys={selectedKeys} 
-        onSelectionChange={setSelectedKeys}
+        onSelectionChange={handleSelectionChangeAdapter}
         className="bg-black"
         items={items}>
         {(item) => (

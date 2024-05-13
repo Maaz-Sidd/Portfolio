@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ShowLoading, hideLoading, setPortfolioData, ReloadData } from './Redux/rootslice.ts';
 import { RootState } from './Redux/store.ts';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Home from './pages/home.tsx'
+import Home from './home.tsx'
 import Loader from './components/loading.tsx';
-import Admin from './pages/Admin/index.tsx';
-import Login from './pages/Admin/Login.tsx';
+import Admin from './Admin/index.tsx';
+import Login from './Login/Login.tsx';
 
 
 
