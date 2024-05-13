@@ -84,14 +84,15 @@ export function Filter({ projects, type, onFilterChange }: { projects: Project_t
     new Set(
       projects.flatMap((project) => {
         if (type === 'language') {
-          return project.languages.filter(item => item !== ''); // Exclude empty strings
+          return project.languages.filter(item => item !== '' );
         } else {
-          return project.frameworks.filter(item => item !== ''); // Exclude empty strings
+          return project.frameworks.filter(item => item !== '');
         }
       })
     )
   );
 
+  
 
   const handleSelectionChangeAdapter = (selected: any) => {
     const selectedKeys = new Set<string>(Array.from(selected));

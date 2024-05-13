@@ -202,7 +202,7 @@ export const Links = ({
 
   return (
     
-    <div className="flex flex-row-reverse mt-2">
+    <div className="flex flex-row-reverse w-full mt-2">
       {otherLinks.map((item:string, index:number) => (
         <a key={index} href={item} target="_blank" rel="noopener noreferrer">
           <img
