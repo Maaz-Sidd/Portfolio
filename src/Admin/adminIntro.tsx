@@ -110,7 +110,7 @@ function AdminIntro() {
                 </p>
                 <p className=' font-bold'>
                     Name: 
-                    <p className='font-normal'> {name} </p>
+                    <p className='font-normal'> {newName} </p>
                 </p>
                 <p className=' font-bold'>
                     Info: {infoArray.map((item, idx) => ( 
@@ -119,7 +119,7 @@ function AdminIntro() {
                     )) }
                 </p>
                 <p className=' font-bold'>
-                    About me: <p className='font-normal'>{about}</p>
+                    About me: <p className='font-normal'>{newAbout}</p>
                 </p>
                 
               </ModalBody>
