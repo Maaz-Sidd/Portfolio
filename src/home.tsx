@@ -8,7 +8,9 @@ import { useSelector } from 'react-redux';
 import { RootState } from './Redux/store.ts';
 import emailImage from './assets/email.png';
 import GithubImage from './assets/github2.png';
-import LinkedInImage from './assets/linkedin.png'
+import LinkedInImage from './assets/linkedin.png';
+import ReactGA from 'react-ga';
+import {useEffect} from "react";
 import { Fade } from "react-awesome-reveal";
 
 
@@ -72,6 +74,9 @@ function Home() {
 ]
   const {portfolioData} = useSelector((state: RootState) => state.root);
   
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname);
+  }, []);
 
   if (!portfolioData) {
     return null; // or any other handling for null portfolioData

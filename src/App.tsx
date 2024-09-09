@@ -9,9 +9,10 @@ import Home from './home.tsx'
 import Loader from './components/loading.tsx';
 import Admin from './Admin/index.tsx';
 import Login from './Login/Login.tsx';
+import ReactGA from 'react-ga'
 
 
-
+ReactGA.initialize(import.meta.env.TRACKING_ID);
 
 
 function App() {
