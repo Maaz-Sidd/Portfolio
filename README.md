@@ -1,5 +1,5 @@
 <div align="center"> 
-    <a href="https://www.maazsidd.ca/">
+    <a href="https://maazsidd.ca/">
         <img src="./src/assets/landing.gif" width="1423"/>
     </a>
     <p>^^^Take a tour of the site^^^</p>
