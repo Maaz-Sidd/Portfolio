@@ -55,9 +55,15 @@ function AdminIntro() {
 
     try {
         dispatch(ShowLoading());
-        const response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/update-intro`, {
-            ...updatedIntro, _id: _id, 
-        });
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/update-intro`, 
+          {
+            ...updatedIntro, 
+            _id: _id, 
+          },
+          {
+            withCredentials : true
+          }
+        );
         if(response.data.success){
             dispatch(hideLoading());
             dispatch(ReloadData(true));

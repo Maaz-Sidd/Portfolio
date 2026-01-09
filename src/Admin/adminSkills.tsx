@@ -118,9 +118,23 @@ function AdminSkills() {
             dispatch(ShowLoading());
             console.log({...updateSkill});
             if(action === 'add'){
-                response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/add-skill`, {...updateSkill});
+                response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/add-skill`, 
+                  {
+                    ...updateSkill
+                  },
+                  {
+                    withCredentials : true
+                  }
+                );
             } else {
-                response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/delete-skill`, {_id : newID});
+                response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/delete-skill`, 
+                  {
+                    _id : newID
+                  },
+                  {
+                    withCredentials : true
+                  }
+                );
             }
             if(response.data.success){
                 if (action == 'delete'){            

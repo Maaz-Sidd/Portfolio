@@ -77,17 +77,33 @@ export function ProjectCardsAdmin() {
     try {
       dispatch(ShowLoading());
       if(Action == 'Delete'){
-        response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/delete-project`, {
+        response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/delete-project`, 
+          {
             _id : _id
-        });
+          },
+          {
+            withCredentials : true
+          }
+        );
       } else if(Action == 'Edit'){
-        response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/update-project`, {
-            ...updateProject, _id:  _id 
-        });
+        response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/update-project`, 
+          {
+            ...updateProject, 
+            _id:  _id 
+          },
+          {
+            withCredentials : true
+          }
+        );
       } else {
-        response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/add-project`, {
+        response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/portfolio/add-project`, 
+          {
             ...updateProject 
-        });
+          },
+          {
+            withCredentials : true
+          }
+        );
       }
         if(response.data.success){
           dispatch(hideLoading());
